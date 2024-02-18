@@ -1147,7 +1147,8 @@ $defs: # JSON Schema definition (maybe we should move these to a separate file)
       - entityPadding
       - stroke
       - fill
-      # TODO: fontSize is the only property that is not required, is this correct?
+      - fontSize
+      - curve
       - useMaxWidth
     properties:
       titleTopMargin:
@@ -1202,6 +1203,12 @@ $defs: # JSON Schema definition (maybe we should move these to a separate file)
         type: integer
         default: 12
         minimum: 0
+      curve:
+        description: Defines how mermaid renders curves for er diagrams.
+        type: string
+        enum: ['basis', 'linear', 'cardinal', 'step']
+        default: 'basis'
+        tsType: '"basis" | "linear" | "cardinal" | "step"'
 
   StateDiagramConfig:
     title: State Diagram Config

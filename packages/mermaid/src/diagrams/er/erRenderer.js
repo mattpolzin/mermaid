@@ -3,7 +3,7 @@ import { line, curveBasis, select } from 'd3';
 import { layout as dagreLayout } from 'dagre-d3-es/src/dagre/index.js';
 import { getConfig } from '../../diagram-api/diagramAPI.js';
 import { log } from '../../logger.js';
-import utils from '../../utils.js';
+import { insertTitle, interpolateToCurve } from '../../utils.js';
 import erMarkers from './erMarkers.js';
 import { configureSvgSize } from '../../setupGraphViewbox.js';
 import { parseGenericTypes } from '../common/common.js';
@@ -425,6 +425,9 @@ const drawRelationshipFromLayout = function (svg, rel, g, insert, diagObj) {
     getEdgeName(rel)
   );
 
+  const curveType =
+    conf.curve ? interpolateToCurve(conf.curve, curveBasis) : curveBasis
+
   // Get a function that will generate the line path
   const lineFunction = line()
     .x(function (d) {
@@ -433,7 +436,7 @@ const drawRelationshipFromLayout = function (svg, rel, g, insert, diagObj) {
     .y(function (d) {
       return d.y;
     })
-    .curve(curveBasis);
+    .curve(curveType);
 
   // Insert the line at the right place
   const svgPath = svg
@@ -633,7 +636,7 @@ export const draw = function (text, id, _version, diagObj) {
 
   const padding = conf.diagramPadding;
 
-  utils.insertTitle(svg, 'entityTitleText', conf.titleTopMargin, diagObj.db.getDiagramTitle());
+  insertTitle(svg, 'entityTitleText', conf.titleTopMargin, diagObj.db.getDiagramTitle());
 
   const svgBounds = svg.node().getBBox();
   const width = svgBounds.width + padding * 2;

@@ -963,6 +963,12 @@ export interface ErDiagramConfig extends BaseDiagramConfig {
    * Font size (expressed as an integer representing a number of pixels)
    */
   fontSize?: number;
+
+  /**
+   * Defines how mermaid renders curves for er diagrams.
+   *
+   */
+  curve?: 'basis' | 'linear' | 'cardinal' | 'step';
 }
 /**
  * The object containing configurations specific for entity relationship diagrams

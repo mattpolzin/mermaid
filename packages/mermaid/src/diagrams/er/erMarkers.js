@@ -52,7 +52,7 @@ const insertMarkers = function (elem, conf) {
     .attr('refY', 9)
     .attr('markerWidth', 18)
     .attr('markerHeight', 18)
-    .attr('orient', 'auto')
+    .attr('orient', '90deg')
     .append('path')
     .attr('stroke', conf.stroke)
     .attr('fill', 'none')
@@ -144,7 +144,7 @@ const insertMarkers = function (elem, conf) {
     .attr('refY', 18)
     .attr('markerWidth', 57)
     .attr('markerHeight', 36)
-    .attr('orient', 'auto');
+    .attr('orient', '90deg');
   marker
     .append('circle')
     .attr('stroke', conf.stroke)
